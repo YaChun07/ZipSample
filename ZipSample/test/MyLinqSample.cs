@@ -80,16 +80,6 @@ namespace ZipSample.test
             var secondEnum = second.GetEnumerator();
             var hashSet = new HashSet<int>();
 
-            //while (firstEnum.MoveNext())
-            //{
-            //    hashSet.Add(firstEnum.Current);
-            //}
-
-            //while (secondEnum.MoveNext())
-            //{
-            //    hashSet.Add(secondEnum.Current);
-            //}
-            //return hashSet;
             while (firstEnum.MoveNext())
             {
                 if (hashSet.Add(firstEnum.Current))
@@ -111,7 +101,7 @@ namespace ZipSample.test
             var firstEnum = first.GetEnumerator();
             var secondEnum = second.GetEnumerator();
 
-            var hashSet = new HashSet<Girl>();
+            var hashSet = new HashSet<Girl>(new MyEqualityCompare());
 
             while (firstEnum.MoveNext())
             {
@@ -127,6 +117,19 @@ namespace ZipSample.test
                     yield return secondEnum.Current;
                 }
             }
+        }
+    }
+
+    public class MyEqualityCompare : IEqualityComparer<Girl>
+    {
+        public bool Equals(Girl x, Girl y)
+        {
+            return x.Name == y.Name;
+        }
+
+        public int GetHashCode(Girl obj)
+        {
+            return Tuple.Create(obj.Name).GetHashCode();
         }
     }
 }
