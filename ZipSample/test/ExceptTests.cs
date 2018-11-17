@@ -16,7 +16,7 @@ namespace ZipSample.test
 
             var expected = new List<int> { 1, 4 };
 
-            var actual = MyLinq.MyExcept(first, second).ToList();
+            var actual = first.MyExcept(second).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
@@ -28,7 +28,7 @@ namespace ZipSample.test
 
             var expected = new List<int> { 7, 9 };
 
-            var actual = MyLinq.MyExcept(second, first).ToList();
+            var actual = second.MyExcept(first).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
         }
     }
