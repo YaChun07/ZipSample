@@ -36,7 +36,7 @@ namespace ZipSample.test
 
     public static class Extensions
     {
-        public static OrderDto Project(this Order order, Func<Order, OrderDto> selector)
+        public static TResult Project<TSource,TResult>(this TSource order, Func<TSource, TResult> selector)
         {
             return selector(order);
         }
