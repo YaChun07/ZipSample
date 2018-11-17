@@ -24,14 +24,18 @@ namespace ZipSample.test
         [TestMethod]
         public void cast_integers_with_cast_failed()
         {
-            var arrayList = new ArrayList { 2, "4", 6 };
-            Action action = () => MyCast(arrayList);
+            var arrayList = new ArrayList { 2, "a", 6 };
+            Action action = () => MyCast(arrayList).ToList();
             action.Should().Throw<InvalidCastException>();
         }
 
-        private IEnumerable<int> MyCast(ArrayList arrayList)
+        private IEnumerable<int> MyCast(IEnumerable arrayList)
         {
-            throw new NotImplementedException();
+            var enumerator = arrayList.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+               yield return (int)enumerator.Current;
+            }
         }
     }
 }

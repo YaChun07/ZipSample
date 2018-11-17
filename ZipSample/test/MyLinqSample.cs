@@ -19,7 +19,9 @@ namespace ZipSample.test
             }
         }
         //stack 在初始化的時候就會做push
-        //IEnumerable 拿的時候會pop拿
+        //IEnumerable 拿的時候會以pop形式拿
+        //IEnumerable<T> 強型別
+        //IEnumerable 弱型別
         public static IEnumerable<T> MyReverse<T>(this IEnumerable<T> source)
         {
             return new Stack<T>(source);
