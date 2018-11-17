@@ -68,6 +68,7 @@
     <Compile Include="test\MyEqualityCompare.cs" />
     <Compile Include="test\MyLinqSample.cs" />
     <Compile Include="test\OfTypeTests.cs" />
+    <Compile Include="test\OrderTest.cs" />
     <Compile Include="test\Repository.cs" />
     <Compile Include="test\ReverseTests.cs" />
     <Compile Include="test\UnionTests.cs" />
