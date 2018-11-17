@@ -1,8 +1,7 @@
-﻿using ExpectedObjects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ExpectedObjects;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ZipSample.test
 {
@@ -21,7 +20,7 @@ namespace ZipSample.test
                 new Employee { Id = 1,Name = "David"},
                 new Employee { Id = 2,Name = "Tom"}
             };
-            var actual = MyConcat(first, second).ToList();
+            var actual = first.MyConcat(second).ToList();
 
             var expected = new List<Employee>
             {
@@ -41,28 +40,13 @@ namespace ZipSample.test
         [TestMethod]
         public void concat_integers()
         {
-            var first = new int[] {1, 3, 5};
-            var second = new int[] {2, 4, 6};
+            var first = new[] {1, 3, 5};
+            var second = new[] {2, 4, 6};
 
-            var actual = MyConcat(first, second).ToArray();
+            var actual = first.MyConcat(second).ToArray();
 
-            var expected = new int[] {1, 3, 5, 2, 4, 6};
+            var expected = new[] {1, 3, 5, 2, 4, 6};
             expected.ToExpectedObject().ShouldEqual(actual);
-        }
-
-        private IEnumerable<T> MyConcat<T>(IEnumerable<T> first, IEnumerable<T> second)
-        {
-            var firstEmu = first.GetEnumerator();
-            var secondEmu = second.GetEnumerator();
-
-            while (firstEmu.MoveNext())
-            {
-                yield return firstEmu.Current;
-            }
-            while (secondEmu.MoveNext())
-            {
-                yield return secondEmu.Current;
-            }
         }
     }
 }
