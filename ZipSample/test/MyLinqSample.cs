@@ -18,5 +18,11 @@ namespace ZipSample.test
                 yield return secondEmu.Current;
             }
         }
+        //stack 在初始化的時候就會做push
+        //IEnumerable 拿的時候會pop拿
+        public static IEnumerable<T> MyReverse<T>(this IEnumerable<T> source)
+        {
+            return new Stack<T>(source);
+        }
     }
 }

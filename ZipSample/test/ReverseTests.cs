@@ -14,15 +14,10 @@ namespace ZipSample.test
         {
             var source = new string[] { "Apple", "Banana", "Cat" };
 
-            var actual = MyReverse(source).ToList();
+            var actual = source.MyReverse().ToList();
             var expected = new List<string> { "Cat", "Banana", "Apple" };
 
             expected.ToExpectedObject().ShouldEqual(actual);
-        }
-
-        private IEnumerable<string> MyReverse(string[] source)
-        {
-            throw new NotImplementedException();
         }
     }
 }
