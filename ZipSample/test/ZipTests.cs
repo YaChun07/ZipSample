@@ -32,7 +32,8 @@ namespace ZipSample.test
             var keyEmu = keys.GetEnumerator();
             while (keyEmu.MoveNext() && girlEmu.MoveNext())
             {
-                yield return new Tuple<string, string>(girlEmu.Current.Name, keyEmu.Current.OwnerBoy.Name);
+                //yield return new Tuple<string, string>(girlEmu.Current.Name, keyEmu.Current.OwnerBoy.Name);
+                yield return Tuple.Create(girlEmu.Current.Name, keyEmu.Current.OwnerBoy.Name));
             }
         }
     }
