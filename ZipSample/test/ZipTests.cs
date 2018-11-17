@@ -28,12 +28,19 @@ namespace ZipSample.test
 
         private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys)
         {
-            var girlEmu = girls.GetEnumerator();
-            var keyEmu = keys.GetEnumerator();
-            while (keyEmu.MoveNext() && girlEmu.MoveNext())
+            //var girlEmu = girls.GetEnumerator();
+            //var keyEmu = keys.GetEnumerator();
+            //while (keyEmu.MoveNext() && girlEmu.MoveNext())
+            //{
+            //    //yield return new Tuple<string, string>(girlEmu.Current.Name, keyEmu.Current.OwnerBoy.Name);
+            //    yield return Tuple.Create(girlEmu.Current.Name, keyEmu.Current.OwnerBoy.Name));
+            //}
+            var girl = girls.ToArray();
+            var key = keys.ToArray();
+            var minLength = Math.Min(girl.Length,key.Length);
+            for (var i = 0; i < minLength; i++)
             {
-                //yield return new Tuple<string, string>(girlEmu.Current.Name, keyEmu.Current.OwnerBoy.Name);
-                yield return Tuple.Create(girlEmu.Current.Name, keyEmu.Current.OwnerBoy.Name));
+                yield return Tuple.Create(girl[i].Name, key[i].OwnerBoy.Name);
             }
         }
     }
