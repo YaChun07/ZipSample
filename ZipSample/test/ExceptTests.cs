@@ -16,7 +16,7 @@ namespace ZipSample.test
 
             var expected = new List<int> { 1, 4 };
 
-            var actual = MyExcept(first, second).ToList();
+            var actual = MyLinq.MyExcept(first, second).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
@@ -28,22 +28,8 @@ namespace ZipSample.test
 
             var expected = new List<int> { 7, 9 };
 
-            var actual = MyExcept(second, first).ToList();
+            var actual = MyLinq.MyExcept(second, first).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
-        }
-
-        private IEnumerable<int> MyExcept(IEnumerable<int> first, IEnumerable<int> second)
-        {
-            var firstEnum = first.GetEnumerator();
-            var hashSet = new HashSet<int>(second);
-
-            while (firstEnum.MoveNext())
-            {
-                if (hashSet.Add(firstEnum.Current))
-                {
-                    yield return firstEnum.Current;
-                }
-            }
         }
     }
 }

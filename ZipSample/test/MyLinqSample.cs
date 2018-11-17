@@ -101,5 +101,19 @@ namespace ZipSample.test
                 }
             }
         }
+
+        public static IEnumerable<int> MyExcept(this IEnumerable<int> first, IEnumerable<int> second)
+        {
+            var firstEnum = first.GetEnumerator();
+            var hashSet = new HashSet<int>(second);
+
+            while (firstEnum.MoveNext())
+            {
+                if (hashSet.Add(firstEnum.Current))
+                {
+                    yield return firstEnum.Current;
+                }
+            }
+        }
     }
 }
