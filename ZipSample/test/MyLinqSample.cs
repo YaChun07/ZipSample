@@ -96,12 +96,12 @@ namespace ZipSample.test
             }
         }
 
-        public static IEnumerable<Girl> MyUnionGirl(this IEnumerable<Girl> first, IEnumerable<Girl> second)
+        public static IEnumerable<Girl> MyUnionGirl(this IEnumerable<Girl> first, IEnumerable<Girl> second, IEqualityComparer<Girl> myEqualityCompare)
         {
             var firstEnum = first.GetEnumerator();
             var secondEnum = second.GetEnumerator();
 
-            var hashSet = new HashSet<Girl>(new MyEqualityCompare());
+            var hashSet = new HashSet<Girl>(myEqualityCompare);
 
             while (firstEnum.MoveNext())
             {
