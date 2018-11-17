@@ -73,5 +73,60 @@ namespace ZipSample.test
                 yield return selector(girlEmuCurrent, keyEmuCurrent);
             }
         }
+
+        public static IEnumerable<int> MyUnion(this IEnumerable<int> first, IEnumerable<int> second)
+        {
+            var firstEnum = first.GetEnumerator();
+            var secondEnum = second.GetEnumerator();
+            var hashSet = new HashSet<int>();
+
+            //while (firstEnum.MoveNext())
+            //{
+            //    hashSet.Add(firstEnum.Current);
+            //}
+
+            //while (secondEnum.MoveNext())
+            //{
+            //    hashSet.Add(secondEnum.Current);
+            //}
+            //return hashSet;
+            while (firstEnum.MoveNext())
+            {
+                if (hashSet.Add(firstEnum.Current))
+                {
+                    yield return firstEnum.Current;
+                }
+            }
+            while (secondEnum.MoveNext())
+            {
+                if (hashSet.Add(secondEnum.Current))
+                {
+                    yield return secondEnum.Current;
+                }
+            }
+        }
+
+        public static IEnumerable<Girl> MyUnionGirl(this IEnumerable<Girl> first, IEnumerable<Girl> second)
+        {
+            var firstEnum = first.GetEnumerator();
+            var secondEnum = second.GetEnumerator();
+
+            var hashSet = new HashSet<Girl>();
+
+            while (firstEnum.MoveNext())
+            {
+                if (hashSet.Add(firstEnum.Current))
+                {
+                    yield return firstEnum.Current;
+                }
+            }
+            while (secondEnum.MoveNext())
+            {
+                if (hashSet.Add(secondEnum.Current))
+                {
+                    yield return secondEnum.Current;
+                }
+            }
+        }
     }
 }
