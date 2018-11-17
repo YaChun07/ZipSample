@@ -76,10 +76,10 @@ namespace ZipSample.test
 
         public static IEnumerable<TSource> MyUnion<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second)
         {
-            return MyUnionGirl(first, second, EqualityComparer<TSource>.Default);
+            return MyZip(first, second, EqualityComparer<TSource>.Default);
         }
 
-        public static IEnumerable<TSource> MyUnionGirl<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> myEqualityCompare)
+        public static IEnumerable<TSource> MyZip<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> myEqualityCompare)
         {
             var firstEnum = first.GetEnumerator();
             var secondEnum = second.GetEnumerator();

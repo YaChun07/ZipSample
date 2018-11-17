@@ -39,7 +39,7 @@ namespace ZipSample.test
                 new Girl() { Name = "Lucy"},
                 new Girl() { Name = "Xinyi"}
             };
-            var actual = first.MyUnionGirl(second, new MyEqualityCompare()).ToList();
+            var actual = first.MyZip(second, new MyEqualityCompare()).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
         }
     }
