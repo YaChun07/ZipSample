@@ -15,7 +15,7 @@ namespace ZipSample.test
         public void cast_integers()
         {
             var arrayList = new ArrayList { 2, 6 };
-            var actual = MyCast<int>(arrayList).ToList();
+            var actual = arrayList.MyCast<int>().ToList();
 
             var expected = new List<int> { 2, 6 };
             expected.ToExpectedObject().ShouldEqual(actual);
@@ -25,28 +25,8 @@ namespace ZipSample.test
         public void cast_integers_with_cast_failed()
         {
             var arrayList = new ArrayList { 2, "a", 6 };
-            Action action = () => MyCast<int>(arrayList).ToList();
-            action.Should().Throw<AmandaException>();
-        }
-
-        public class AmandaException : Exception
-        {
-        }
-
-        private IEnumerable<TResult> MyCast<TResult>(IEnumerable arrayList)
-        {
-            var enumerator = arrayList.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                if (enumerator.Current is TResult)
-                {
-                    yield return (TResult)enumerator.Current;
-                }
-                else
-                {
-                    throw new AmandaException();
-                }
-            }
+            Action action = () => arrayList.MyCast<int>().ToList();
+            action.Should().Throw<MyLinq.AmandaException>();
         }
     }
 }

@@ -14,22 +14,10 @@ namespace ZipSample.test
         public void pick_integer_from_ArrayList()
         {
             var arrayList = new ArrayList { 2, "4", 6 };
-            var actual = MyOfType<int>(arrayList).ToList();
+            var actual = arrayList.MyOfType<int>().ToList();
 
             var expected = new List<int> { 2, 6 };
             expected.ToExpectedObject().ShouldEqual(actual);
-        }
-
-        private IEnumerable<TResult> MyOfType<TResult>(IEnumerable source)
-        {
-            var enumerator = source.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                if (enumerator.Current is TResult)
-                {
-                    yield return (TResult)enumerator.Current;
-                }
-            }
         }
     }
 }
