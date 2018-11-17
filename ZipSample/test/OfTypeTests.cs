@@ -22,7 +22,14 @@ namespace ZipSample.test
 
         private IEnumerable<int> MyOfType(ArrayList source)
         {
-            throw new NotImplementedException();
+            var enumerator = source.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current is int)
+                {
+                    yield return (int)enumerator.Current;
+                }
+            }
         }
     }
 }
