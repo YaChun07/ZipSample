@@ -10,6 +10,35 @@ namespace ZipSample.test
     public class ConcatTests
     {
         [TestMethod]
+        public void concat_employee()
+        {
+            var first = new List<Employee>
+            {
+                new Employee { Id = 91,Name = "David"}
+            };
+            var second = new List<Employee>
+            {
+                new Employee { Id = 1,Name = "David"},
+                new Employee { Id = 2,Name = "Tom"}
+            };
+            var actual = MyConcat(first, second).ToList();
+
+            var expected = new List<Employee>
+            {
+                new Employee {Id = 91, Name = "David"},
+                new Employee {Id = 1, Name = "David"},
+                new Employee {Id = 2, Name = "Tom"}
+            };
+            expected.ToExpectedObject().ShouldEqual(actual);
+        }
+
+        public class Employee
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        [TestMethod]
         public void concat_integers()
         {
             var first = new int[] {1, 3, 5};
@@ -21,7 +50,7 @@ namespace ZipSample.test
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
-        private IEnumerable<int> MyConcat(IEnumerable<int> first, IEnumerable<int> second)
+        private IEnumerable<T> MyConcat<T>(IEnumerable<T> first, IEnumerable<T> second)
         {
             var firstEmu = first.GetEnumerator();
             var secondEmu = second.GetEnumerator();
