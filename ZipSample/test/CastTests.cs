@@ -26,7 +26,11 @@ namespace ZipSample.test
         {
             var arrayList = new ArrayList { 2, "a", 6 };
             Action action = () => MyCast<int>(arrayList).ToList();
-            action.Should().Throw<InvalidCastException>();
+            action.Should().Throw<AmandaException>();
+        }
+
+        public class AmandaException : Exception
+        {
         }
 
         private IEnumerable<TResult> MyCast<TResult>(IEnumerable arrayList)
@@ -34,7 +38,14 @@ namespace ZipSample.test
             var enumerator = arrayList.GetEnumerator();
             while (enumerator.MoveNext())
             {
-               yield return (TResult)enumerator.Current;
+                if (enumerator.Current is TResult)
+                {
+                    yield return (TResult)enumerator.Current;
+                }
+                else
+                {
+                    throw new AmandaException();
+                }
             }
         }
     }
