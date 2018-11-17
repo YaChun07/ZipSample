@@ -102,17 +102,4 @@ namespace ZipSample.test
             }
         }
     }
-
-    public class MyEqualityCompare : IEqualityComparer<Girl>
-    {
-        public bool Equals(Girl x, Girl y)
-        {
-            return x.Name == y.Name;
-        }
-
-        public int GetHashCode(Girl obj)
-        {
-            return Tuple.Create(obj.Name).GetHashCode();
-        }
-    }
 }
