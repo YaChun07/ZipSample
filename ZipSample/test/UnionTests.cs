@@ -25,20 +25,19 @@ namespace ZipSample.test
         {
             var first = new List<Girl>
             {
-                new Girl(){Name = "Amanda"},
-                new Girl(){Name = "Lucy"},
+                new Girl() { Name = "Amanda"},
+                new Girl() { Name = "Lucy"}
             };
             var second = new List<Girl>()
             {
-                new Girl(){Name = "Lucy"},
-                new Girl(){Name = "Xinyi"}
+                new Girl() { Name = "Lucy"},
+                new Girl() { Name = "Xinyi"}
             };
             var expected = new List<Girl>()
             {
                 new Girl() { Name = "Amanda"},
                 new Girl() { Name = "Lucy"},
-                new Girl() { Name = "Xinyi"},
-               
+                new Girl() { Name = "Xinyi"}
             };
             var actual = first.MyUnionGirl(second).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
